@@ -1,0 +1,22 @@
+form {
+  width: 30rem;
+  color: #fff;
+}
+.btn-save-user {
+  padding: 5px 10px;
+  background-color: #00a457;
+  color: #fff;
+  margin-top: 20px;
+  &:hover {
+    background-color: #0e6e41;
+  }
+}
+
+input,
+select {
+  margin-bottom: 10px;
+}
+
+.validation {
+  color: #ff7777;
+}

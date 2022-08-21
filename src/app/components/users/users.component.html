@@ -1,0 +1,59 @@
+<div class="users-layout">
+  <app-spinner *ngIf="spinnerService.visibility | async"></app-spinner>
+
+  <h2 *ngIf="error">{{ error }}</h2>
+
+  <div
+    *ngIf="!error"
+    class="users-table table-responsive{-sm|-md|-lg|-xl} text-nowrap"
+  >
+    <button
+      [disabled]="spinnerService.visibility | async"
+      class="btn btn-add-user"
+      (click)="onAddUser()"
+    >
+      Add User
+    </button>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col th-lg" style="width: 5%">Id</th>
+          <th scope="col th-lg" style="width: 25%">Name</th>
+          <th scope="col th-lg" style="width: 40%">Email</th>
+          <th scope="col th-lg" style="width: 10%">Gender</th>
+          <th scope="col th-lg" style="width: 10%">Status</th>
+          <th scope="col th-lg" style="width: 10%">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.gender }}</td>
+          <td>{{ user.status }}</td>
+          <td class="buttons">
+            <button
+              [disabled]="spinnerService.visibility | async"
+              class="btn btn-edit"
+              (click)="onUpdateUser(user.id)"
+            >
+              Edit
+            </button>
+            <button
+              [disabled]="spinnerService.visibility | async"
+              class="btn btn-delete"
+              (click)="deleteUser(user.id!, user.name!)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="buttons">
+      <button class="btn btn-default" (click)="prevPage()">Prev Page</button>
+      <button class="btn btn-default" (click)="nextPage()">Next Page</button>
+    </div>
+  </div>
+</div>

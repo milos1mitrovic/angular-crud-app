@@ -1,0 +1,30 @@
+.header {
+  background: #253240 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 2px #637b94;
+  top: 0;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  z-index: 100;
+}
+
+.nav-link {
+  color: #fff;
+  margin: 0 10px;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+  }
+  &.active {
+    border-bottom: 2px solid #fff;
+  }
+}
+
+.navbar-nav {
+  flex-direction: row;
+}

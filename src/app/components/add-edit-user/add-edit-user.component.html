@@ -1,0 +1,132 @@
+<app-spinner *ngIf="spinnerService.visibility | async"></app-spinner>
+<h2 *ngIf="isAddMode">Add User</h2>
+<h2 *ngIf="!isAddMode">Edit User</h2>
+
+<h2 *ngIf="notFoundError">{{ notFoundError }}</h2>
+
+<div *ngIf="!notFoundError">
+  <form [formGroup]="userDetails" class="mx-auto px-5">
+    <div class="justify-content-center">
+      <fieldset>
+        <label for="Name" class="form-label">Name</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': userInputs.name.errors && userInputs.name.touched
+          }"
+        />
+        <div *ngIf="userInputs.name.errors">
+          <span
+            class="validation"
+            *ngIf="userInputs.name.errors?.required && userInputs.name.touched"
+          >
+            Name is required
+          </span>
+        </div>
+        <div *ngFor="let err of error">
+          <span class="validation" *ngIf="err.field === 'name'">
+            {{ err.field }} {{ err.message }}
+          </span>
+        </div>
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          autocomplete="on"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': userInputs.email.errors && userInputs.email.touched
+          }"
+        />
+        <div *ngIf="userInputs.email.errors && userInputs.email.touched">
+          <span class="validation" *ngIf="userInputs.email.errors?.required"
+            >Email is required</span
+          >
+          <span
+            class="validation"
+            *ngIf="
+              userInputs.email.invalid && !userInputs.email.errors?.required
+            "
+            >Email is invalid</span
+          >
+        </div>
+        <div *ngFor="let err of error">
+          <span class="validation" *ngIf="err.field === 'email'">
+            {{ err.field }} {{ err.message }}
+          </span>
+        </div>
+        <label for="gender" class="form-label">Gender</label>
+        <select
+          class="form-control"
+          id="gender"
+          name="gender"
+          formControlName="gender"
+        >
+          <option value=""></option>
+          <option *ngFor="let country of genders">
+            {{ country }}
+          </option>
+        </select>
+        <div *ngIf="userInputs.gender.errors">
+          <span
+            class="validation"
+            *ngIf="
+              userInputs.gender.errors?.required && userInputs.gender.touched
+            "
+          >
+            Gender is required
+          </span>
+        </div>
+        <div *ngFor="let err of error">
+          <span class="validation" *ngIf="err.field === 'gender'">
+            {{ err.field }} {{ err.message }}
+          </span>
+        </div>
+
+        <label for="status" class="form-label">Status</label>
+        <select
+          class="form-control"
+          id="status"
+          name="status"
+          formControlName="status"
+          placeholder="Status"
+        >
+          <option value=""></option>
+          <option *ngFor="let status of statuses">
+            {{ status }}
+          </option>
+        </select>
+        <div *ngIf="userInputs.status.errors">
+          <span
+            class="validation"
+            *ngIf="
+              userInputs.status.errors?.required && userInputs.status.touched
+            "
+          >
+            Gender is required
+          </span>
+        </div>
+        <div *ngFor="let err of error">
+          <span class="validation" *ngIf="err.field === 'status'">
+            {{ err.field }} {{ err.message }}
+          </span>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <input
+            (click)="onSubmit()"
+            [disabled]="spinnerService.visibility | async"
+            type="button"
+            name="submit"
+            class="btn btn-save-user"
+            value="Save User"
+          />
+        </div>
+      </fieldset>
+    </div>
+  </form>
+</div>

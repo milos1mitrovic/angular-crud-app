@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #2f4154;
+  padding: 60px 0;
+  position: relative;
+}
+
+.btn {
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0 5px;
+  background-color: #595a5b;
+  color: #fff;
+  &:hover {
+    color: #fff;
+    background-color: #637e9a;
+  }
+}
+
+h2 {
+  text-align: center;
+  color: #fff;
+  margin: 20px 0;
+}
+
+.toast-top-center {
+  top: 30px;
+}
